@@ -12,7 +12,7 @@ library(shiny)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
-    output$distPlot <- renderPlot({
+    output$distPlot1 <- renderPlot({
 
         # generate bins based on input$bins from ui.R
         x    <- faithful[, 2]
@@ -23,6 +23,14 @@ shinyServer(function(input, output) {
              xlab = 'Waiting time to next eruption (in mins)',
              main = 'Histograma de tiempos de espera')
 
+    })
+    output$distPlot2 <- renderPlot({
+      
+      # generate bins based on input$bins from ui.R
+      x    <- faithful[, 1]
+      y    <- faithful[, 2]
+     
+      plot(x,y,col="red") 
     })
 
 })
