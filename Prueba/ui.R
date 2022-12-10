@@ -8,27 +8,28 @@
 #
 
 library(shiny)
+#library(shinydashboard)
+#library(shinydashboardPlus)
+library(bs4Dash)
 
 # Define UI for application that draws a histogram
-shinyUI(fluidPage(
-
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-
-    # Sidebar with a slider input for number of bins
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-            plotOutput("distPlot1"),
-            plotOutput("distPlot2")
-        )
-    )
-))
+dashboardPage(
+  dashboardHeader(title = "Unidad de Urgencia HBV",titleWidth = 250),
+  dashboardSidebar(width = 250),
+  dashboardBody(
+    # Boxes need to be put in a row (or column)
+    fluidRow(
+      box(width = 4,
+        title = "Controles para histograma",
+        sliderInput("bins", "Number of observations:", 1, 100, 50),
+        selectInput(inputId = "color1", label = "selector de color", choices = c("red","blue","green"),
+                    selected = "red")),
+      box(plotOutput("distPlot1"),width = 8)),
+    
+    fluidRow(box(width = 4,
+                 title = "Controles para grafico de dispersión",
+                 selectInput(inputId = "color2", label = "selector de color", choices = c("red","blue","green"),
+                             selected = "red")),
+      box(plotOutput("distPlot2"),width = 8)),
+  )
+)

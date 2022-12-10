@@ -19,7 +19,7 @@ shinyServer(function(input, output) {
         bins <- seq(min(x), max(x), length.out = input$bins + 1)
 
         # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'red', border = 'white',
+        hist(x, breaks = bins, col = input$color1, border = 'white',
              xlab = 'Waiting time to next eruption (in mins)',
              main = 'Histograma de tiempos de espera')
 
@@ -30,7 +30,7 @@ shinyServer(function(input, output) {
       x    <- faithful[, 1]
       y    <- faithful[, 2]
      
-      plot(x,y,col="red") 
+      plot(x,y,col=input$color2) 
     })
 
 })
