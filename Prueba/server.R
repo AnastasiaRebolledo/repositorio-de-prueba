@@ -8,6 +8,8 @@
 #
 
 library(shiny)
+library(rJava)
+library(xlsx)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -35,6 +37,11 @@ shinyServer(function(input, output) {
     
     output$grafico_principal<-renderPlot({
       
+      x<-seq(as.Date("2022-01-01"),as.Date("2022-12-06"),"day")
+      y<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 18, colIndex= 2:341
+                   , as.data.frame = TRUE, header = FALSE)
+      plot(x,y,type = "l")
+                 
       
       
     })
