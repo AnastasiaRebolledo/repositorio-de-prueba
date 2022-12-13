@@ -24,7 +24,7 @@ dashboardPage(
   dashboardBody(
     
     # Boxes need to be put in a row (or column)
-    fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,plotOutput("grafico_principal"))),
+    fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,highchartOutput("grafico_principal"))),
     fluidRow(
       box(width = 4,
         title = "Controles para histograma",

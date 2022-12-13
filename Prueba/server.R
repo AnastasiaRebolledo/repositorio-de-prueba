@@ -10,6 +10,8 @@
 library(shiny)
 library(rJava)
 library(xlsx)
+library(highcharter)
+library(dplyr)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -35,13 +37,26 @@ shinyServer(function(input, output) {
       plot(x,y,col=input$color2) 
     })
     
-    output$grafico_principal<-renderPlot({
+    #Aqui cambie la funcion renderplot por la funcion renderHighcharter,
+    #porque la funcion que genera el grafico depende de la libreria que se use
+    #por tanto en la salida de la ui tambien se cambia plotOutput ´por highchartOutput
+    
+    
+    output$grafico_principal<-renderHighchart({
       
       x<-seq(as.Date("2022-01-01"),as.Date("2022-12-06"),"day")
       y<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 18, colIndex= 2:341
                    , as.data.frame = TRUE, header = FALSE)
-      plot(x,y,type = "l")
-                 
+
+      #Aca transpuse el vector o si no genera n columnas
+      y<-t(y)
+      #plot(x,y,type = "l")
+      
+      #Aca lo guarda en un cuadro de datos,
+      data<-data.frame(x,y)
+      
+      #Aca asignamos el cuadro datos a un grafico
+      data %>% hchart("line",hcaes(x = x, y = y))           
       
       
     })
