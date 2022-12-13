@@ -32,5 +32,11 @@ shinyServer(function(input, output) {
      
       plot(x,y,col=input$color2) 
     })
+    
+    output$grafico_principal<-renderPlot({
+      
+      
+      
+    })
 
 })

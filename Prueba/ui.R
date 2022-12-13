@@ -15,15 +15,23 @@ library(bs4Dash)
 # Define UI for application that draws a histogram
 dashboardPage(
   dashboardHeader(title = "Unidad de Urgencia HBV",titleWidth = 250),
-  dashboardSidebar(width = 250),
+  dashboardSidebar(width = 250,
+                   sidebarMenu(
+                     id = "sidebar",
+                     menuItem("Menu Principal",tabName="Data",
+                              icon=icon("layer-group"),
+                              selected = TRUE))),
   dashboardBody(
+    
     # Boxes need to be put in a row (or column)
+    fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,plotOutput("grafico_principal"))),
     fluidRow(
       box(width = 4,
         title = "Controles para histograma",
         sliderInput("bins", "Number of observations:", 1, 100, 50),
         selectInput(inputId = "color1", label = "selector de color", choices = c("red","blue","green"),
                     selected = "red")),
+      
       box(plotOutput("distPlot1"),width = 8)),
     
     fluidRow(box(width = 4,
