@@ -40,28 +40,37 @@ shinyServer(function(input, output) {
     
     output$grafico_principal<-renderHighchart({
       
-      x1<-seq(as.Date("2022-01-01"),as.Date("2022-12-06"),"day")
-      y1<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 18, colIndex= 2:341
+      x1<-seq(as.Date("2022-01-01"),as.Date("2022-12-31"),"day")
+      y1<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
                    , as.data.frame = TRUE, header = FALSE)
+      y2<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
+      y3<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
       
        
       #Aca transpuse el vector o si no genera n columnas
       y1<-t(y1)
+      y2<-t(y2)
+      y3<-t(y3)
       
       #plot(x,y,type = "l")
       
       #Aca lo guarda en un cuadro de datos,
-      data<-data.frame(x1,y1)
+      data<-data.frame(x1,y1,y2,y3)
       
       #Aca asignamos el cuadro datos a un grafico
       #data %>% hchart("line",hcaes(x = x, y = y))           
       
       #Aca cambie la forma de realizar el grafico pero con la misma libreria highcharter
-      highchart() %>%
-        hc_add_series(data, type = "line",
-                      hcaes(x = x1, y = y1))
-        
-      
+     
+       highchart() %>%
+        hc_add_series(name="2022",data, type = "line",
+                      hcaes(x = x1, y = y1)) %>%
+         hc_add_series(name="2021",data, type = "line",
+                       hcaes(x = x1, y = y2)) %>%
+         hc_add_series(name="2020",data, type = "line",
+                       hcaes(x = x1, y = y3)) %>% hc_xAxis(type="datetime")
         
     })
 
