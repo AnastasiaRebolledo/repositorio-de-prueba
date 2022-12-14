@@ -12,26 +12,6 @@ library(shiny)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
-    output$distPlot1 <- renderPlot({
-
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = input$color1, border = 'white',
-             xlab = 'Waiting time to next eruption (in mins)',
-             main = 'Histograma de tiempos de espera')
-
-    })
-    output$distPlot2 <- renderPlot({
-      
-      # generate bins based on input$bins from ui.R
-      x    <- faithful[, 1]
-      y    <- faithful[, 2]
-     
-      plot(x,y,col=input$color2) 
-    })
     
     #Aqui cambie la funcion renderplot por la funcion renderHighcharter,
     #porque la funcion que genera el grafico depende de la libreria que se use
@@ -48,7 +28,6 @@ shinyServer(function(input, output) {
       y3<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
                     , as.data.frame = TRUE, header = FALSE)
       
-       
       #Aca transpuse el vector o si no genera n columnas
       y1<-t(y1)
       y2<-t(y2)
@@ -72,6 +51,29 @@ shinyServer(function(input, output) {
          hc_add_series(name="2020",data, type = "line",
                        hcaes(x = x1, y = y3)) %>% hc_xAxis(type="datetime")
         
+    })
+    
+    output$histogramas_principales<-renderHighchart({
+      
+      x1<-seq(as.Date("2022-01-01"),as.Date("2022-12-31"),"day")
+      y1<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
+      y2<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
+      y3<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
+      
+      #Aca transpuse el vector o si no genera n columnas
+      y1<-t(y1)
+      y2<-t(y2)
+      y3<-t(y3)
+      
+      #Aca lo guarda en un cuadro de datos,
+      data<-data.frame(x1,y1,y2,y3)
+      
+      #Aca deberiamos hacer los histogramas
+      #  
+      
     })
 
 })

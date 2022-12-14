@@ -30,14 +30,15 @@ dashboardPage(
     
     # Boxes need to be put in a row (or column)
     fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,highchartOutput("grafico_principal"))),
-    fluidRow(
-      box(width = 4,
-        title = "Controles para histograma",
-        sliderInput("bins", "Number of observations:", 1, 100, 50),
-        selectInput(inputId = "color1", label = "selector de color", choices = c("red","blue","green"),
-                    selected = "red")),
+    fluidRow(width=12,box(width = 6,title = "Histogramas",closable = FALSE,elevation = 2,highchartOutput("histogramas_principales"))),
+    # fluidRow(
+    #   box(width = 4,
+    #     title = "Controles para histograma",
+    #     sliderInput("bins", "Number of observations:", 1, 100, 50),
+    #     selectInput(inputId = "color1", label = "selector de color", choices = c("red","blue","green"),
+    #                 selected = "red")),
       
-      box(plotOutput("distPlot1"),width = 8)),
+    #  box(plotOutput("distPlot1"),width = 8)),
     
     fluidRow(box(width = 4,
                  title = "Controles para grafico de dispersión",
