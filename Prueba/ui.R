@@ -11,6 +11,11 @@ library(shiny)
 #library(shinydashboard)
 #library(shinydashboardPlus)
 library(bs4Dash)
+library(rJava)
+library(xlsx)
+library(highcharter)
+library(dplyr)
+
 
 # Define UI for application that draws a histogram
 dashboardPage(
