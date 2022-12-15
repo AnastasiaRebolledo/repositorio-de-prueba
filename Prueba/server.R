@@ -27,16 +27,20 @@ shinyServer(function(input, output) {
                     , as.data.frame = TRUE, header = FALSE)
       y3<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
                     , as.data.frame = TRUE, header = FALSE)
+      y4<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
+      
       
       #Aca transpuse el vector o si no genera n columnas
       y1<-t(y1)
       y2<-t(y2)
       y3<-t(y3)
+      y4<-t(y4)
       
       #plot(x,y,type = "l")
       
       #Aca lo guarda en un cuadro de datos,
-      data<-data.frame(x1,y1,y2,y3)
+      data<-data.frame(x1,y1,y2,y3,y4)
       
       #Aca asignamos el cuadro datos a un grafico
       #data %>% hchart("line",hcaes(x = x, y = y))           
@@ -49,7 +53,9 @@ shinyServer(function(input, output) {
          hc_add_series(name="2021",data, type = "line",
                        hcaes(x = x1, y = y2)) %>%
          hc_add_series(name="2020",data, type = "line",
-                       hcaes(x = x1, y = y3)) %>% hc_xAxis(type="datetime")
+                       hcaes(x = x1, y = y3)) %>%
+         hc_add_series(name="2019",data, type = "line",
+                       hcaes(x = x1, y = y4)) %>% hc_xAxis(type="datetime")
         
     })
     
@@ -62,22 +68,28 @@ shinyServer(function(input, output) {
                     , as.data.frame = TRUE, header = FALSE)
       y3<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
                     , as.data.frame = TRUE, header = FALSE)
+      y4<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
       
       #Aca transpuse el vector o si no genera n columnas
       y1<-t(y1)
       y2<-t(y2)
       y3<-t(y3)
+      y4<-t(y4)
       
       #Aca lo guarda en un cuadro de datos,
-      data<-data.frame(x1,y1,y2,y3)
+      data<-data.frame(x1,y1,y2,y3,y4)
       
       #Aca deberiamos hacer los histogramas
       hchart(density(data$y1), type = "area", color = "steelblue", 
                     name = "2022") %>%
       hc_add_series(density(data$y2), type = "area",
-                    name = "2021")%>%
-        hc_add_series(density(data$y3), type = "area",
-                      name = "2020")
+                    name = "2021") %>%
+      hc_add_series(density(data$y3), type = "area",
+                      name = "2020") %>%
+      hc_add_series(density(data$y4), type = "area",
+                      name = "2019")
+      
       
     })
 
