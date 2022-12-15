@@ -20,23 +20,27 @@ library(dplyr)
 # Define UI for application that draws a histogram
 dashboardPage(
   dashboardHeader(title = "Unidad de Urgencia HBV",titleWidth = 250),
-  dashboardSidebar(width = 250,
+  dashboardSidebar(width = 250,skin = "light",elevation = 2,status = "primary",
                    sidebarMenu(
                      id = "sidebar",
-                     menuItem("Menu Principal",tabName="Data",
+                     menuItem("Menu Principal",tabName="menu1",
                               icon=icon("layer-group"),
-                              selected = TRUE))),
+                              selected = TRUE),
+                     menuItem("Segundo menu",tabName="menu2",
+                              icon=icon("layer-group"),
+                              selected = FALSE))),
   dashboardBody(
     
     # Boxes need to be put in a row (or column)
-    fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,highchartOutput("grafico_principal"))),
+    fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,highchartOutput("grafico_principal"),
+                          status = "primary",headerBorder = FALSE,collapsible = FALSE)),
     fluidRow(width=12,
-             box(width = 10,title = "Histogramas",closable = FALSE,elevation = 2,highchartOutput("histogramas_principales")),
+             box(width = 10,title = "Histogramas",closable = FALSE,elevation = 2,highchartOutput("histogramas_principales"),
+                          status = "info",headerBorder = FALSE,collapsible = FALSE),
              column(width = 2,
-             infoBox(width = 12,title = h4("Media"),value = h5(1410),color = "primary",icon = icon("envelope")),
-             infoBox(width = 12,title = h4("Varianza"),value = h5(1410),color = "info",icon = icon("bookmark"),tabName = "tab2"),
-             infoBox(width = 12,title = h4("Asimetria"),value = h5(1410),color = "success",icon = icon("bookmark"),tabName = "tab2"),
-             infoBox(width = 12,title = h4("Asimetria"),value = h5(1410),color = "warning",icon = icon("bookmark"),tabName = "tab2")
+             valueBox(width = 12,subtitle = "Media",value = 1410,color = "primary",icon = icon("envelope")),
+             valueBox(width = 12,subtitle = "Varianza",value = 1410,color = "info",icon = icon("bookmark")),
+             valueBox(width = 12,subtitle = "Asimetria",value = 1410,color = "success",icon = icon("bookmark"))
              )),
    
     
