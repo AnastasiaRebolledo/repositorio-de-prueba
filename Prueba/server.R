@@ -72,7 +72,13 @@ shinyServer(function(input, output) {
       data<-data.frame(x1,y1,y2,y3)
       
       #Aca deberiamos hacer los histogramas
-      #  
+      hchart(density(data$y1), type = "area", 
+            color = "steelblue", name = "2022") %>%
+      hc_add_series(
+        density(data$y2), type = "area",
+        color = "#B71C1C", 
+        name = "2021"
+      )
       
     })
 
