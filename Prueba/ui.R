@@ -33,6 +33,9 @@ dashboardPage(
   dashboardBody(
     
     # Boxes need to be put in a row (or column)
+    fluidRow(width=12,box(width = 12,title = "Grafico General",closable = FALSE,elevation = 2,highchartOutput("grafico_general"),
+                          status = "primary",headerBorder = FALSE,collapsible = FALSE)),
+    
     fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,highchartOutput("grafico_principal"),
                           status = "primary",headerBorder = FALSE,collapsible = FALSE)),
     fluidRow(width=12,
@@ -42,13 +45,7 @@ dashboardPage(
              valueBox(width = 12,subtitle = "Media",value = 1410,color = "primary",icon = icon("envelope")),
              valueBox(width = 12,subtitle = "Varianza",value = 1410,color = "info",icon = icon("bookmark")),
              valueBox(width = 12,subtitle = "Asimetria",value = 1410,color = "success",icon = icon("bookmark"))
-             )),
+             ))
    
-    
-    fluidRow(box(width = 4,
-                 title = "Controles para grafico de dispersión",
-                 selectInput(inputId = "color2", label = "selector de color", choices = c("red","blue","green"),
-                             selected = "red")),
-      box(plotOutput("distPlot2"),width = 8)),
   )
 )
