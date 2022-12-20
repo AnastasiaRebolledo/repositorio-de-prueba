@@ -17,17 +17,16 @@ shinyServer(function(input, output) {
     #porque la funcion que genera el grafico depende de la libreria que se use
     #por tanto en la salida de la ui tambien se cambia plotOutput ´por highchartOutput
     
-    
-    output$grafico_principal<-renderHighchart({
+    output$grafico_general<-renderHighchart({
       
-      x1<-seq(as.Date("2022-01-01"),as.Date("2022-12-31"),"day")
-      y1<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                   , as.data.frame = TRUE, header = FALSE)
-      y2<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+      x1<-seq(as.Date("2019-01-01"),as.Date("2022-12-31"),"day")
+      y1<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
                     , as.data.frame = TRUE, header = FALSE)
-      y3<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+      y2<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:367
                     , as.data.frame = TRUE, header = FALSE)
-      y4<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+      y3<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
+      y4<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
                     , as.data.frame = TRUE, header = FALSE)
       
       
@@ -37,16 +36,41 @@ shinyServer(function(input, output) {
       y3<-t(y3)
       y4<-t(y4)
       
-      #plot(x,y,type = "l")
+      y1<-rbind(y1,y2,y3,y4)
+      data<-data.frame(x1,y1)
+      
+      highchart() %>%
+        hc_add_series(name="demanda",data, type = "line",
+                      hcaes(x = x1, y = y1))  %>% hc_xAxis(type="datetime")
+      
+      
+      
+    })
+    
+    output$grafico_principal<-renderHighchart({
+      
+      x1<-seq(as.Date("2022-01-01"),as.Date("2022-12-31"),"day")
+      y1<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
+      y2<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
+      y3<-read.xlsx(file="Urgencia2020(2).xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
+      y4<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+                    , as.data.frame = TRUE, header = FALSE)
+      
+      #Aca transpuse el vector o si no genera n columnas
+      y1<-t(y1)
+      y2<-t(y2)
+      y3<-t(y3)
+      y4<-t(y4)
       
       #Aca lo guarda en un cuadro de datos,
       data<-data.frame(x1,y1,y2,y3,y4)
       
-      #Aca asignamos el cuadro datos a un grafico
-      #data %>% hchart("line",hcaes(x = x, y = y))           
-      
       cols <- viridis(4)
       cols <- substr(cols, 0, 7)
+      
       
       #Aca cambie la forma de realizar el grafico pero con la misma libreria highcharter
        highchart() %>%
@@ -69,7 +93,7 @@ shinyServer(function(input, output) {
                     , as.data.frame = TRUE, header = FALSE)
       y2<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
                     , as.data.frame = TRUE, header = FALSE)
-      y3<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
+      y3<-read.xlsx(file="Urgencia2020(2).xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
                     , as.data.frame = TRUE, header = FALSE)
       y4<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
                     , as.data.frame = TRUE, header = FALSE)
