@@ -45,8 +45,10 @@ shinyServer(function(input, output) {
       #Aca asignamos el cuadro datos a un grafico
       #data %>% hchart("line",hcaes(x = x, y = y))           
       
+      cols <- viridis(4)
+      cols <- substr(cols, 0, 7)
+      
       #Aca cambie la forma de realizar el grafico pero con la misma libreria highcharter
-     
        highchart() %>%
         hc_add_series(name="2022",data, type = "line",
                       hcaes(x = x1, y = y1)) %>%
@@ -55,7 +57,8 @@ shinyServer(function(input, output) {
          hc_add_series(name="2020",data, type = "line",
                        hcaes(x = x1, y = y3)) %>%
          hc_add_series(name="2019",data, type = "line",
-                       hcaes(x = x1, y = y4)) %>% hc_xAxis(type="datetime")
+                       hcaes(x = x1, y = y4)) %>% hc_xAxis(type="datetime") %>%
+         hc_colors(cols)
         
     })
     
@@ -80,15 +83,19 @@ shinyServer(function(input, output) {
       #Aca lo guarda en un cuadro de datos,
       data<-data.frame(x1,y1,y2,y3,y4)
       
+      cols <- viridis(4)
+      cols <- substr(cols, 0, 7)
+      
       #Aca deberiamos hacer los histogramas
-      hchart(density(data$y1), type = "area", color = "steelblue", 
+      hchart(density(data$y1[1:340]), type = "area", 
                     name = "2022") %>%
       hc_add_series(density(data$y2), type = "area",
                     name = "2021") %>%
       hc_add_series(density(data$y3), type = "area",
                       name = "2020") %>%
       hc_add_series(density(data$y4), type = "area",
-                      name = "2019")
+                      name = "2019") %>%
+      hc_colors(cols)
       
       
     })

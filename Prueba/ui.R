@@ -15,6 +15,7 @@ library(rJava)
 library(xlsx)
 library(highcharter)
 library(dplyr)
+library(viridisLite)
 
 
 # Define UI for application that draws a histogram
