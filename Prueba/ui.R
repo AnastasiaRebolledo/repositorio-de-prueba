@@ -38,10 +38,10 @@ dashboardPage(
     fluidRow(width=12,box(width = 12,title = "Grafico General",closable = FALSE,elevation = 2,highchartOutput("grafico_general",height = "300px"),
                           status = "primary",headerBorder = FALSE,collapsible = FALSE)),
     
-    fluidRow(width=12,box(width = 6,title = "Atenciones de urgencia por causa",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_1",height = "300px"),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),
-                      box(width = 6,title = "Atenciones de urgencia por edad",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_2",height = "300px"),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE))
+    fluidRow(width=12,box(width = 4,title = "Atenciones de urgencia por causa",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_1",height = "300px"),
+                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),box(width=2,closable = FALSE,collapsible = FALSE,elevation = 2,status = "gray"),
+                      box(width = 4,title = "Atenciones de urgencia por edad",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_2",height = "300px"),
+                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),box(width=2,closable = FALSE,collapsible = FALSE,elevation = 2,status = "gray"))
    
   ),
       tabItem(tabName = "menu2",
