@@ -38,15 +38,15 @@ dashboardPage(
     fluidRow(width=12,box(width = 12,title = "Grafico General",closable = FALSE,elevation = 2,highchartOutput("grafico_general",height = "300px"),
                           status = "primary",headerBorder = FALSE,collapsible = FALSE)),
     
-    fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,highchartOutput("grafico_principal",height = "300px"),
-                          status = "info",headerBorder = FALSE,collapsible = FALSE)),
-    fluidRow(width=12,box(width = 6,title = "Grafico Circular 1",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_1",height = "300px"),
+    fluidRow(width=12,box(width = 6,title = "Atenciones de urgencia por causa",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_1",height = "300px"),
                           status = "secondary",headerBorder = FALSE,collapsible = FALSE),
-                      box(width = 6,title = "Grafico Circular 2",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_2",height = "300px"),
+                      box(width = 6,title = "Atenciones de urgencia por edad",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_2",height = "300px"),
                           status = "secondary",headerBorder = FALSE,collapsible = FALSE))
    
   ),
       tabItem(tabName = "menu2",
+              fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,highchartOutput("grafico_principal",height = "300px"),
+                                    status = "info",headerBorder = FALSE,collapsible = FALSE)),
     
     fluidRow(width=12,
              box(width = 10,title = "Histogramas",closable = FALSE,elevation = 2,highchartOutput("histogramas_principales"),

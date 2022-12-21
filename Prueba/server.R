@@ -47,6 +47,32 @@ shinyServer(function(input, output) {
       
     })
     
+    output$grafico_circular_1<-renderHighchart({ 
+      
+      y1<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 1, rowIndex = 4:8, colIndex= 1:6
+                    , as.data.frame = TRUE, header = FALSE)
+     
+      total<-y1[1:6,c(1,6)]
+      
+      total %>%
+      hchart("pie",hcaes(x=X1,y=X6),name="Causas")
+      
+      
+      })  
+    
+    output$grafico_circular_2<-renderHighchart({ 
+      
+      y1<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 2, rowIndex = 4:8, colIndex= 1:6
+                    , as.data.frame = TRUE, header = FALSE)
+      
+      total<-y1[1:6,c(1,6)]
+      
+      total %>%
+        hchart("pie",hcaes(x=X1,y=X6),name="Causas")
+      
+      
+    })  
+    
     output$grafico_principal<-renderHighchart({
       
       x1<-seq(as.Date("2022-01-01"),as.Date("2022-12-31"),"day")
