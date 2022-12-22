@@ -16,6 +16,8 @@ library(xlsx)
 library(highcharter)
 library(dplyr)
 library(viridisLite)
+library(moments)
+source("carga.R")
 
 
 # Define UI for application that draws a histogram
