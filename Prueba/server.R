@@ -19,210 +19,71 @@ shinyServer(function(input, output) {
     
     output$grafico_general<-renderHighchart({
       
-      # x1<-seq(as.Date("2019-01-01"),as.Date("2022-12-31"),"day")
-      # y1<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-      #               , as.data.frame = TRUE, header = FALSE)
-      # y2<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:367
-      #               , as.data.frame = TRUE, header = FALSE)
-      # y3<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-      #               , as.data.frame = TRUE, header = FALSE)
-      # y4<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-      #               , as.data.frame = TRUE, header = FALSE)
-      # 
-      # 
-      # #Aca transpuse el vector o si no genera n columnas
-      # y1<-t(y1)
-      # y2<-t(y2)
-      # y3<-t(y3)
-      # y4<-t(y4)
-      # 
-      # y1<-rbind(y1,y2,y3,y4)
-      # data<-data.frame(x1,y1)
-      
       highchart() %>%
         hc_add_series(name="demanda",data, type = "line",
-                      hcaes(x = x1, y = y1))  %>% hc_xAxis(type="datetime")
-      
-    })
+                      hcaes(x = x1, y = demanda))  %>% hc_xAxis(type="datetime")
+      })
+    
     
     output$media_1<-renderText({
-      
-      x1<-seq(as.Date("2019-01-01"),as.Date("2022-12-31"),"day")
-      y1<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y2<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:367
-                    , as.data.frame = TRUE, header = FALSE)
-      y3<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y4<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      
-      
-      #Aca transpuse el vector o si no genera n columnas
-      y1<-t(y1)
-      y2<-t(y2)
-      y3<-t(y3)
-      y4<-t(y4)
-      
-      y1<-rbind(y1,y2,y3,y4)
-      data<-data.frame(x1,y1)
-      
-      mean(data$y1[1:1436])
-      
-    })
+          mean(data$demanda[1:1436])
+      })
+    
     
     output$desvest_1<-renderText({
-      
-      x1<-seq(as.Date("2019-01-01"),as.Date("2022-12-31"),"day")
-      y1<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y2<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:367
-                    , as.data.frame = TRUE, header = FALSE)
-      y3<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y4<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      
-      
-      #Aca transpuse el vector o si no genera n columnas
-      y1<-t(y1)
-      y2<-t(y2)
-      y3<-t(y3)
-      y4<-t(y4)
-      
-      y1<-rbind(y1,y2,y3,y4)
-      data<-data.frame(x1,y1)
-      
-      sd(data$y1[1:1436])
-      
-    })
+          sd(data$demanda[1:1436])
+      })
     
     
     output$histograma_principal<-renderHighchart({
-      
-      x1<-seq(as.Date("2019-01-01"),as.Date("2022-12-31"),"day")
-      y1<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y2<-read.xlsx(file="Urgencia2020.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:367
-                    , as.data.frame = TRUE, header = FALSE)
-      y3<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y4<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      
-      
-      #Aca transpuse el vector o si no genera n columnas
-      y1<-t(y1)
-      y2<-t(y2)
-      y3<-t(y3)
-      y4<-t(y4)
-      
-      y1<-rbind(y1,y2,y3,y4)
-      data<-data.frame(x1,y1)
-      
-      hchart(density(data$y1[1:1436]), type = "area", 
-             name = "Demanda")
-      
-    })
+          hchart(density(data$demanda[1:1436]), type = "area", name = "Demanda")
+      })
+    
     
     output$grafico_circular_1<-renderHighchart({ 
-      
-      y1<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 1, rowIndex = 4:8, colIndex= 1:6
-                    , as.data.frame = TRUE, header = FALSE)
-     
-      total<-y1[1:6,c(1,6)]
-      
-      total %>%
-      hchart("pie",hcaes(x=X1,y=X6),name="Causas")
-      
-      
+          total_causa %>% hchart("pie",hcaes(x=X1,y=X6),name="Causas")
       })  
     
+    
     output$grafico_circular_2<-renderHighchart({ 
-      
-      y1<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 2, rowIndex = 4:8, colIndex= 1:6
-                    , as.data.frame = TRUE, header = FALSE)
-      
-      total<-y1[1:6,c(1,6)]
-      
-      total %>%
-        hchart("pie",hcaes(x=X1,y=X6),name="Causas")
-      
-      
-    })  
+          total_edad %>% hchart("pie",hcaes(x=X1,y=X6),name="Causas")
+      })  
+    
     
     output$grafico_principal<-renderHighchart({
-      
-      x1<-seq(as.Date("2022-01-01"),as.Date("2022-12-31"),"day")
-      y1<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y2<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y3<-read.xlsx(file="Urgencia2020(2).xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y4<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      
-      #Aca transpuse el vector o si no genera n columnas
-      y1<-t(y1)
-      y2<-t(y2)
-      y3<-t(y3)
-      y4<-t(y4)
-      
-      #Aca lo guarda en un cuadro de datos,
-      data<-data.frame(x1,y1,y2,y3,y4)
-      
+    
       cols <- viridis(4)
       cols <- substr(cols, 0, 7)
       
       
       #Aca cambie la forma de realizar el grafico pero con la misma libreria highcharter
        highchart() %>%
-        hc_add_series(name="2022",data, type = "line",
-                      hcaes(x = x1, y = y1)) %>%
-         hc_add_series(name="2021",data, type = "line",
-                       hcaes(x = x1, y = y2)) %>%
-         hc_add_series(name="2020",data, type = "line",
-                       hcaes(x = x1, y = y3)) %>%
-         hc_add_series(name="2019",data, type = "line",
-                       hcaes(x = x1, y = y4)) %>% hc_xAxis(type="datetime") %>%
+        hc_add_series(name="2019",data_por_año, type = "line",
+                      hcaes(x = x2, y = y1)) %>%
+         hc_add_series(name="2020",data_por_año, type = "line",
+                       hcaes(x = x2, y = y2_2)) %>%
+         hc_add_series(name="2021",data_por_año, type = "line",
+                       hcaes(x = x2, y = y3)) %>%
+         hc_add_series(name="2022",data_por_año, type = "line",
+                       hcaes(x = x2, y = y4)) %>% hc_xAxis(type="datetime") %>%
          hc_colors(cols)
         
     })
     
     output$histogramas_principales<-renderHighchart({
-      
-      x1<-seq(as.Date("2022-01-01"),as.Date("2022-12-31"),"day")
-      y1<-read.xlsx(file="Urgencia2022.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y2<-read.xlsx(file="Urgencia2021.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y3<-read.xlsx(file="Urgencia2020(2).xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      y4<-read.xlsx(file="Urgencia2019.xlsx",sheetIndex = 1, rowIndex = 19, colIndex= 2:366
-                    , as.data.frame = TRUE, header = FALSE)
-      
-      #Aca transpuse el vector o si no genera n columnas
-      y1<-t(y1)
-      y2<-t(y2)
-      y3<-t(y3)
-      y4<-t(y4)
-      
-      #Aca lo guarda en un cuadro de datos,
-      data<-data.frame(x1,y1,y2,y3,y4)
-      
+
       cols <- viridis(4)
       cols <- substr(cols, 0, 7)
       
       #Aca deberiamos hacer los histogramas
-      hchart(density(data$y1[1:340]), type = "area", 
-                    name = "2022") %>%
-      hc_add_series(density(data$y2), type = "area",
-                    name = "2021") %>%
-      hc_add_series(density(data$y3), type = "area",
-                      name = "2020") %>%
-      hc_add_series(density(data$y4), type = "area",
-                      name = "2019") %>%
+      hchart(density(data_por_año$y1), type = "area", 
+                    name = "2019") %>%
+      hc_add_series(density(data_por_año$y2_2), type = "area",
+                    name = "2020") %>%
+      hc_add_series(density(data_por_año$y3), type = "area",
+                      name = "2021") %>%
+      hc_add_series(density(data_por_año$y4[1:340]), type = "area",
+                      name = "2022") %>%
       hc_colors(cols)
       
       
