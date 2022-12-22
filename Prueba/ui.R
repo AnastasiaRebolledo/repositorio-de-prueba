@@ -35,13 +35,20 @@ dashboardPage(
       tabItem(tabName = "menu1",
     
     # Boxes need to be put in a row (or column)
-    fluidRow(width=12,box(width = 12,title = "Grafico General",closable = FALSE,elevation = 2,highchartOutput("grafico_general",height = "300px"),
-                          status = "primary",headerBorder = FALSE,collapsible = FALSE)),
+    fluidRow(width=12,box(width = 10,title = "Grafico General",closable = FALSE,elevation = 2,highchartOutput("grafico_general",height = "300px"),
+                          status = "primary",headerBorder = FALSE,collapsible = FALSE),
+             column(width = 2,
+                    valueBox(width = 12,subtitle = "Media",value = textOutput("media_1"),color = "primary",icon = icon("envelope")),
+                    valueBox(width = 12,subtitle = "Varianza",value = textOutput("var_1"),color = "info",icon = icon("bookmark")),
+                    valueBox(width = 12,subtitle = "Asimetria",value = textOutput("asi_1"),color = "success",icon = icon("bookmark"))
+             )),
     
-    fluidRow(width=12,box(width = 4,title = "Atenciones de urgencia por causa",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_1",height = "300px"),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),box(width=2,closable = FALSE,collapsible = FALSE,elevation = 2,status = "gray"),
+    fluidRow(width=12,box(width = 4,closable = FALSE,elevation = 2,highchartOutput("histograma_principal"),
+                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),
+                      box(width = 4,title = "Atenciones de urgencia por causa",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_1",height = "300px"),
+                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),
                       box(width = 4,title = "Atenciones de urgencia por edad",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_2",height = "300px"),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),box(width=2,closable = FALSE,collapsible = FALSE,elevation = 2,status = "gray"))
+                          status = "secondary",headerBorder = FALSE,collapsible = FALSE))
    
   ),
       tabItem(tabName = "menu2",
