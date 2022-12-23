@@ -17,7 +17,8 @@ library(highcharter)
 library(dplyr)
 library(viridisLite)
 library(moments)
-source("carga.R")
+library(shinycssloaders)
+#source("carga.R")
 
 
 # Define UI for application that draws a histogram
@@ -37,7 +38,8 @@ dashboardPage(
       tabItem(tabName = "menu1",
     
     # Boxes need to be put in a row (or column)
-    fluidRow(width=12,box(width = 10,title = "Grafico General",closable = FALSE,elevation = 2,highchartOutput("grafico_general",height = "300px"),
+    fluidRow(width=12,box(width = 10,title = "Grafico General",closable = FALSE,elevation = 2,
+                          withSpinner(highchartOutput("grafico_general",height = "300px")),
                           status = "primary",headerBorder = FALSE,collapsible = FALSE),
              column(width = 2,
                     valueBox(width = 12,subtitle = "Media",value = textOutput("media_1"),color = "primary",icon = icon("check")),
@@ -45,20 +47,21 @@ dashboardPage(
                     valueBox(width = 12,subtitle = "Asimetria",value = textOutput("asi_1"),color = "success",icon = icon("check"))
              )),
     
-    fluidRow(width=12,box(width = 4,title = "Histograma",closable = FALSE,elevation = 2,highchartOutput("histograma_principal",height = "300px"),
+    fluidRow(width=12,box(width = 4,title = "Histograma",closable = FALSE,elevation = 2,withSpinner(highchartOutput("histograma_principal",height = "300px")),
                           status = "secondary",headerBorder = FALSE,collapsible = FALSE),
-                      box(width = 4,title = "Atenciones de urgencia por causa",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_1",height = "300px"),
+                      box(width = 4,title = "Atenciones de urgencia por causa",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_1",height = "300px")),
                           status = "secondary",headerBorder = FALSE,collapsible = FALSE),
-                      box(width = 4,title = "Atenciones de urgencia por edad",closable = FALSE,elevation = 2,highchartOutput("grafico_circular_2",height = "300px"),
+                      box(width = 4,title = "Atenciones de urgencia por edad",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_2",height = "300px")),
                           status = "secondary",headerBorder = FALSE,collapsible = FALSE))
    
   ),
       tabItem(tabName = "menu2",
-              fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,highchartOutput("grafico_principal",height = "300px"),
+              fluidRow(width=12,box(width = 12,title = "Grafico Principal",closable = FALSE,elevation = 2,
+                                    withSpinner(highchartOutput("grafico_principal",height = "300px")),
                                     status = "info",headerBorder = FALSE,collapsible = FALSE)),
     
     fluidRow(width=12,
-             box(width = 10,title = "Histogramas",closable = FALSE,elevation = 2,highchartOutput("histogramas_principales"),
+             box(width = 10,title = "Histogramas",closable = FALSE,elevation = 2,withSpinner(highchartOutput("histogramas_principales")),
                  status = "info",headerBorder = FALSE,collapsible = FALSE),
              column(width = 2,
                     valueBox(width = 12,subtitle = "Media",value = 1410,color = "primary",icon = icon("envelope")),

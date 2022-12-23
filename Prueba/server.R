@@ -9,9 +9,11 @@
 
 library(shiny)
 
+
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-
+  load("datos_app.RData")
+  
     
     #Aqui cambie la funcion renderplot por la funcion renderHighcharter,
     #porque la funcion que genera el grafico depende de la libreria que se use
