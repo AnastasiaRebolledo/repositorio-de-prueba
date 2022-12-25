@@ -43,12 +43,12 @@ shinyServer(function(input, output) {
     
     
     output$grafico_circular_1<-renderHighchart({ 
-          total_causa %>% hchart("pie",hcaes(x=X1,y=X6),name="Causas")
+          causa %>% hchart("pie",hcaes(x=X1,y=X6),name="Causas")
       })  
     
     
     output$grafico_circular_2<-renderHighchart({ 
-          total_edad %>% hchart("pie",hcaes(x=X1,y=X6),name="Causas")
+          edad %>% hchart("pie",hcaes(x=X1,y=X6),name="Causas")
       })  
     
     
@@ -91,4 +91,37 @@ shinyServer(function(input, output) {
       
     })
 
+    output$grafico_circular_3<-renderHighchart({ 
+      causa %>% hchart("pie",hcaes(x=X1,y=X2),name="Causas")
+    })
+    
+    output$grafico_circular_4<-renderHighchart({ 
+      causa %>% hchart("pie",hcaes(x=X1,y=X3),name="Causas")
+    })
+    
+    output$grafico_circular_5<-renderHighchart({ 
+      causa %>% hchart("pie",hcaes(x=X1,y=X4),name="Causas")
+    })
+    
+    output$grafico_circular_6<-renderHighchart({ 
+      causa %>% hchart("pie",hcaes(x=X1,y=X5),name="Causas")
+    })
+    
+    output$grafico_circular_7<-renderHighchart({ 
+      edad %>% hchart("pie",hcaes(x=X1,y=X2),name="Edad")
+    })
+    
+    output$grafico_circular_8<-renderHighchart({ 
+      edad %>% hchart("pie",hcaes(x=X1,y=X3),name="Edad")
+    })
+    
+    output$grafico_circular_9<-renderHighchart({ 
+      edad %>% hchart("pie",hcaes(x=X1,y=X4),name="Edad")
+    })
+    
+    output$grafico_circular_10<-renderHighchart({ 
+      edad %>% hchart("pie",hcaes(x=X1,y=X5),name="Edad")
+    })
+    
+    
 })

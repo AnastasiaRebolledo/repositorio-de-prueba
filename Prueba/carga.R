@@ -19,12 +19,6 @@ y3<-t(y3)
 y4<-t(y4)
 
 
-causa<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 1, rowIndex = 4:8, colIndex= 1:6
-              , as.data.frame = TRUE, header = FALSE)
-edad<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 2, rowIndex = 4:8, colIndex= 1:6
-              , as.data.frame = TRUE, header = FALSE)
-
-
 
 ### Set de datos para serie de tiempo ####
 
@@ -32,8 +26,10 @@ demanda<-rbind(y1,y2,y3,y4)
 data<-data.frame(x1,demanda)
 
 ### set de datos para causas y años ####
-total_causa<-causa[1:6,c(1,6)]
-total_edad<-edad[1:6,c(1,6)]
+causa<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 1, rowIndex = 4:8, colIndex= 1:6
+                 , as.data.frame = TRUE, header = FALSE)
+edad<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 2, rowIndex = 4:8, colIndex= 1:6
+                , as.data.frame = TRUE, header = FALSE)
 
 ### set de datos para comparar años ####
 data_por_año<-data.frame(x2,y1,y2_2,y3,y4)
