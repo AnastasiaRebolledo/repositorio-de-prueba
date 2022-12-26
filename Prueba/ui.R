@@ -61,38 +61,18 @@ dashboardPage(
                                     status = "info",headerBorder = FALSE,collapsible = FALSE)),
     
     fluidRow(width=12,
-             box(width = 10,title = "Histogramas",closable = FALSE,elevation = 2,withSpinner(highchartOutput("histogramas_principales")),
-                 status = "info",headerBorder = FALSE,collapsible = FALSE),
-             column(width = 2,
-                    valueBox(width = 12,subtitle = "Media",value = 1410,color = "primary",icon = icon("envelope")),
-                    valueBox(width = 12,subtitle = "Varianza",value = 1410,color = "info",icon = icon("bookmark")),
-                    valueBox(width = 12,subtitle = "Asimetria",value = 1410,color = "success",icon = icon("bookmark"))
-             )),
+             box(width = 12,title = "Histogramas",closable = FALSE,elevation = 2,withSpinner(highchartOutput("histogramas_principales",height = "300px")),
+                 status = "info",headerBorder = FALSE,collapsible = FALSE)),
     
-    fluidRow(width=12,
-             box(width = 3,title = "Atenciones de urgencia por causa 2019",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_3",height = "230px")),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),
-                      box(width = 3,title = "Atenciones de urgencia por causa 2020",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_4",height = "230px")),
-                           status = "secondary",headerBorder = FALSE,collapsible = FALSE),
-                      box(width = 3,title = "Atenciones de urgencia por causa 2019",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_5",height = "230px")),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),
-                      box(width = 3,title = "Atenciones de urgencia por causa 2020",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_6",height = "230px")),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE)
-             ),
-    
-    fluidRow(width=12,box(width = 3,title = "Atenciones de urgencia por edad 2019",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_7",height = "230px")),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),
-                      box(width = 3,title = "Atenciones de urgencia por edad 2020",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_8",height = "230px")),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),
-                      box(width = 3,title = "Atenciones de urgencia por edad 2021",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_9",height = "230px")),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE),
-                      box(width = 3,title = "Atenciones de urgencia por edad 2022",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_10",height = "230px")),
-                          status = "secondary",headerBorder = FALSE,collapsible = FALSE)
-            ),
+
     fluidRow(width=12,
              box(width = 12,title = "Atenciones de urgencia por causa",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_barras_causa")),
                  status = "info",headerBorder = FALSE,collapsible = FALSE)
-      ))
+      ),
+    
+    fluidRow(width=12,
+            box(width = 12,title = "Atenciones de urgencia por edad",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_barras_edad")),
+                status = "info",headerBorder = FALSE,collapsible = FALSE)
+  ))
   
-)
-))
+)))

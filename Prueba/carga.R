@@ -29,8 +29,13 @@ data<-data.frame(x1,demanda)
 
 causa<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 1, rowIndex = 4:8, colIndex= 1:6
                  , as.data.frame = TRUE, header = FALSE)
-edad<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 2, rowIndex = 4:8, colIndex= 1:6
+causas_por_año<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 2, rowIndex = 1:21, colIndex= 1:3
+                 , as.data.frame = TRUE, header = TRUE)
+
+edad<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 3, rowIndex = 4:8, colIndex= 1:6
                 , as.data.frame = TRUE, header = FALSE)
+edad_por_año<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 4, rowIndex = 1:21, colIndex= 1:3
+                , as.data.frame = TRUE, header = TRUE)
 
 ### set de datos para comparar años ####
 data_por_año<-data.frame(x2,y1,y2_2,y3,y4)

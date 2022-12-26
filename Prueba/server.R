@@ -91,47 +91,12 @@ shinyServer(function(input, output) {
       
     })
 
-    output$grafico_circular_3<-renderHighchart({ 
-      causa %>% hchart("pie",hcaes(x=X1,y=X2),name="Causas")
-    })
-    
-    output$grafico_circular_4<-renderHighchart({ 
-      causa %>% hchart("pie",hcaes(x=X1,y=X3),name="Causas")
-    })
-    
-    output$grafico_circular_5<-renderHighchart({ 
-      causa %>% hchart("pie",hcaes(x=X1,y=X4),name="Causas")
-    })
-    
-    output$grafico_circular_6<-renderHighchart({ 
-      causa %>% hchart("pie",hcaes(x=X1,y=X5),name="Causas")
-    })
-    
-    output$grafico_circular_7<-renderHighchart({ 
-      edad %>% hchart("pie",hcaes(x=X1,y=X2),name="Edad")
-    })
-    
-    output$grafico_circular_8<-renderHighchart({ 
-      edad %>% hchart("pie",hcaes(x=X1,y=X3),name="Edad")
-    })
-    
-    output$grafico_circular_9<-renderHighchart({ 
-      edad %>% hchart("pie",hcaes(x=X1,y=X4),name="Edad")
-    })
-    
-    output$grafico_circular_10<-renderHighchart({ 
-      edad %>% hchart("pie",hcaes(x=X1,y=X5),name="Edad")
-    })
     
     output$grafico_barras_causa<-renderHighchart({ 
-      highchart() %>%
-        hc_add_series(name="2019",causa, type = "column",
-                      hcaes(x = X1, y = X2)) %>%
-        hc_add_series(name="2020",causa, type = "column",
-                      hcaes(x = X1, y = X3)) %>%
-        hc_add_series(name="2021",causa, type = "column",
-                      hcaes(x = X1, y = X4)) %>%
-        hc_add_series(name="2022",causa, type = "column",
-                      hcaes(x = X1, y = X5)) 
+      causas_por_año %>% hchart("column", hcaes(x = "Año", y = "Cantidad", group = "Tipo.de.causa"))
+    })
+    
+    output$grafico_barras_edad<-renderHighchart({ 
+      edad_por_año %>% hchart("column", hcaes(x = "Año", y = "Cantidad", group = "Edad"))
     })
 })
