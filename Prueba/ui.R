@@ -88,6 +88,10 @@ dashboardPage(
                           status = "secondary",headerBorder = FALSE,collapsible = FALSE),
                       box(width = 3,title = "Atenciones de urgencia por edad 2022",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_10",height = "230px")),
                           status = "secondary",headerBorder = FALSE,collapsible = FALSE)
+            ),
+    fluidRow(width=12,
+             box(width = 12,title = "Atenciones de urgencia por causa",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_barras_causa")),
+                 status = "info",headerBorder = FALSE,collapsible = FALSE)
       ))
   
 )

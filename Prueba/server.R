@@ -68,7 +68,7 @@ shinyServer(function(input, output) {
                        hcaes(x = x2, y = y3)) %>%
          hc_add_series(name="2022",data_por_año, type = "line",
                        hcaes(x = x2, y = y4)) %>% hc_xAxis(type="datetime") %>%
-         hc_colors(cols)
+         hc_colors(cols) 
         
     })
     
@@ -123,5 +123,15 @@ shinyServer(function(input, output) {
       edad %>% hchart("pie",hcaes(x=X1,y=X5),name="Edad")
     })
     
-    
+    output$grafico_barras_causa<-renderHighchart({ 
+      highchart() %>%
+        hc_add_series(name="2019",causa, type = "column",
+                      hcaes(x = X1, y = X2)) %>%
+        hc_add_series(name="2020",causa, type = "column",
+                      hcaes(x = X1, y = X3)) %>%
+        hc_add_series(name="2021",causa, type = "column",
+                      hcaes(x = X1, y = X4)) %>%
+        hc_add_series(name="2022",causa, type = "column",
+                      hcaes(x = X1, y = X5)) 
+    })
 })

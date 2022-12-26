@@ -26,6 +26,7 @@ demanda<-rbind(y1,y2,y3,y4)
 data<-data.frame(x1,demanda)
 
 ### set de datos para causas y años ####
+
 causa<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 1, rowIndex = 4:8, colIndex= 1:6
                  , as.data.frame = TRUE, header = FALSE)
 edad<-read.xlsx(file="UrgenciaPorCausayEdad.xlsx",sheetIndex = 2, rowIndex = 4:8, colIndex= 1:6
