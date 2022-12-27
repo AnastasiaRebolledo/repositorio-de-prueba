@@ -99,4 +99,15 @@ shinyServer(function(input, output) {
     output$grafico_barras_edad<-renderHighchart({ 
       edad_por_año %>% hchart("column", hcaes(x = "Año", y = "Cantidad", group = "Edad"))
     })
+    
+    output$grafico_covid<-renderHighchart({
+      
+      highchart() %>%
+        hc_add_series(name="demanda",covid, type = "line",
+                      hcaes(x = x1, y = covid))  %>% hc_xAxis(type="datetime")
+    })
+    
+    output$grafico_circular_3<-renderHighchart({ 
+      tabla %>% hchart("pie",hcaes(x=X1,y=X2),name="Edades")
+    }) 
 })

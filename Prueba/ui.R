@@ -32,6 +32,9 @@ dashboardPage(
                               selected = TRUE),
                      menuItem("Segundo menu",tabName="menu2",
                               icon=icon("layer-group"),
+                              selected = FALSE),
+                    menuItem("Urgencias covid",tabName="menu3",
+                              icon=icon("layer-group"),
                               selected = FALSE))),
   dashboardBody(
     tabItems(
@@ -73,6 +76,16 @@ dashboardPage(
     fluidRow(width=12,
             box(width = 12,title = "Atenciones de urgencia por edad",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_barras_edad")),
                 status = "info",headerBorder = FALSE,collapsible = FALSE)
-  ))
+      )
+    ),
+
   
-)))
+  tabItem(tabName = "menu3",
+          fluidRow(width=12,box(width = 12,title = "Atenciones de urgencia Covid-19",closable = FALSE,elevation = 2,
+                                withSpinner(highchartOutput("grafico_covid",height = "300px")),
+                                status = "primary",headerBorder = FALSE,collapsible = FALSE)),
+          fluidRow(width=12,box(width = 6,title = "Atenciones de urgencia Covid-19 por edad",closable = FALSE,elevation = 2,withSpinner(highchartOutput("grafico_circular_3",height = "300px")),
+                       status = "secondary",headerBorder = FALSE,collapsible = FALSE))
+          ))
+  
+))
